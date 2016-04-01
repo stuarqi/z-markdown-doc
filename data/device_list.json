@@ -1,0 +1,156 @@
+{
+  "name": "基础数据查询接口",
+  "path": "/tsersp/device_list",
+  "method": ["GET"],
+  "params": [
+    {
+      "name": "pro_start_date",
+      "type": "string",
+      "required": false,
+      "description": "生产开始日期",
+      "remark": "格式: YYYY-MM-DD"
+    },
+    {
+      "name": "pro_end_date",
+      "type": "string",
+      "required": false,
+      "description": "生产结束日期",
+      "remark": "格式：YYYY-MM-DD"
+    },
+    {
+      "name": "pack_type",
+      "type": "integer",
+      "required": false,
+      "description": "套餐种类",
+      "remark": "不填写时默认查询全部套餐"
+    },
+    {
+      "name": "search_key",
+      "type": "string",
+      "required": false,
+      "description": "搜索关键字",
+      "remark": "可以是ICCID、SN码、批次码或流水号"
+    },
+    {
+      "name": "page_index",
+      "type": "integer",
+      "required": false,
+      "default": 1,
+      "description": "当前页数",
+      "remark": ""
+    },
+    {
+      "name": "page_size",
+      "type": "integer",
+      "required": false,
+      "default": 10,
+      "description": "每页记录数",
+      "remark": ""
+    }
+  ],
+  "results": [
+    {
+      "name": "status",
+      "type": "integer",
+      "description": "通用状态码",
+      "remark": "",
+      "example": 200
+    },
+    {
+      "name": "msg",
+      "type": "string",
+      "description": "提示信息",
+      "remark": "",
+      "example": "提示信息"
+    },
+    {
+      "name": "data",
+      "type": "object",
+      "description": "结果数据对象",
+      "remark": "",
+      "fields": [
+        {
+          "name": "total",
+          "type": "integer",
+          "description": "数据总条数",
+          "example": 100
+        },
+        {
+          "name": "total_pages",
+          "type": "integer",
+          "description": "总页数",
+          "example": 10
+        },
+        {
+          "name": "list",
+          "type": "array",
+          "description": "数据列表",
+          "template": [
+            {
+              "name": "id",
+              "type": "string",
+              "description": "数据标识",
+              "example": "4028802e53cc1b560153cc58d4610003"
+            },
+            {
+              "name": "iccid",
+              "type": "string",
+              "description": "IC卡标识",
+              "example": "8986061501000895592"
+            },
+            {
+              "name": "snno",
+              "type": "string",
+              "description": "SN码",
+              "example": "311601000987e"
+            },
+            {
+              "name": "pack_type",
+              "type": "integer",
+              "description": "套餐种类",
+              "example": 1
+            },
+            {
+              "name": "pack_type_name",
+              "type": "string",
+              "description": "套餐名称",
+              "example": "测试套餐"
+            },
+            {
+              "name": "add_date",
+              "type": "string",
+              "description": "添加日期",
+              "remark": "格式：YYYY-MM-DD",
+              "example": "2016-4-1"
+            },
+            {
+              "name": "pro_date",
+              "type": "string",
+              "description": "生产日期",
+              "remark": "格式：YYYY-MM-DD",
+              "example": "2016-4-1"
+            },
+            {
+              "name": "batch_code",
+              "type": "string",
+              "description": "批次码",
+              "example": "20160203"
+            },
+            {
+              "name": "serial_no",
+              "type": "string",
+              "description": "流水号",
+              "example": "00025"
+            },
+            {
+              "name": "obd_cp",
+              "type": "string",
+              "description": "OBD设备商",
+              "example": "超越"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

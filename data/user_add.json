@@ -1,0 +1,37 @@
+{
+  "name": "添加用户接口",
+  "path": "/user/add",
+  "method": ["POST"],
+  "params": [
+    {
+      "name": "user_id",
+      "type": "string",
+      "required": true,
+      "description": "用户标识",
+      "remark": "统一鉴权平台的用户标识"
+    },
+    {
+      "name": "user_name",
+      "type": "string",
+      "required": true,
+      "description": "用户名",
+      "remark": "运营平台用户设置的用户名"
+    }
+  ],
+  "results": [
+    {
+      "name": "status",
+      "type": "integer",
+      "description": "通用状态码",
+      "remark": "",
+      "example": 200
+    },
+    {
+      "name": "msg",
+      "type": "string",
+      "description": "提示信息",
+      "remark": "",
+      "example": "提示信息"
+    }
+  ]
+}
