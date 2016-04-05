@@ -23,7 +23,7 @@ function createExample(target, obj) {
 
 module.exports = function * template(data, gfm) {
     yield header(1, data.project_name);
-    yield header(4, data.url);
+    yield header(4, `\`${data.url}\``);
     yield header(4, '通用状态码');
     yield table(data.common_status, [
         {
