@@ -35,37 +35,37 @@ file.write(header(4, '接口参数'));
 file.write(table(data.params, [
     {
         title: '参数名称',
-        align: '-',
+        align: 'DEFAULT',
         field: 'name',
         default: '-'
     },
     {
         title: '类型',
-        align: ':-:',
+        align: 'CENTER',
         field: 'type',
         default: '-'
     },
     {
         title: '必选',
-        align: ':-:',
+        align: 'CENTER',
         field: 'required',
         default: 'false'
     },
     {
         title: '默认值',
-        align: '-',
+        align: 'DEFAULT',
         field: 'default',
         default: '-'
     },
     {
         title: '说明',
-        align: '-',
+        align: 'DEFAULT',
         field: 'description',
         default: '-'
     },
     {
         title: '备注',
-        align: '-',
+        align: 'DEFAULT',
         field: 'remark',
         default: '-'
     }
@@ -79,25 +79,25 @@ file.write(json(createExample({}, data.results)));
 file.write(table(data.results, [
     {
         title: '字段名称',
-        align: '-',
+        align: 'DEFAULT',
         field: 'name',
         default: '-'
     },
     {
         title: '类型',
-        align: ':-:',
+        align: 'CENTER',
         field: 'type',
         default: '-'
     },
     {
         title: '说明',
-        align: '-',
+        align: 'DEFAULT',
         field: 'description',
         default: '-'
     },
     {
         title: '备注',
-        align: '-',
+        align: 'DEFAULT',
         field: 'remark',
         default: '-'
     }
