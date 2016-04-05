@@ -1,0 +1,464 @@
+{
+  "project_name": "应用商店无线接口文档",
+  "url": "http://wdservice.mapbar.com/appstorewsapi",
+  "common_status": [
+    {
+      "code": 200,
+      "desc": "成功"
+    },
+    {
+      "code": 206,
+      "desc": "参数未找到对应记录"
+    },
+    {
+      "code": 2061,
+      "desc": "错误操作"
+    },
+    {
+      "code": 302,
+      "desc": "登录服务器重定向的请求"
+    },
+    {
+      "code": 400,
+      "desc": "请求参数错误"
+    },
+    {
+      "code": 401,
+      "desc": "该应用的某版本不适用用户操作系统"
+    },
+    {
+      "code": 500,
+      "desc": "服务器内部错误，具体错误见"
+    }
+  ],
+  "interfaces": [
+    {
+      "name": "应用列表接口",
+      "path": "/applist/{os_version}/{p_index}/{p_p_num}",
+      "method": ["GET"],
+      "params": [
+        {
+          "name": "os_version",
+          "type": "string",
+          "required": true,
+          "desc": "手机系统版本对应的api level",
+          "remark": ""
+        },
+        {
+          "name": "p_index",
+          "type": "integer",
+          "required": true,
+          "default": 1,
+          "desc": "当前页码",
+          "remark": "页码从1开始"
+        },
+        {
+          "name": "p_p_num",
+          "type": "integer",
+          "required": true,
+          "default": 10,
+          "desc": "每页记录数",
+          "remark": ""
+        }
+      ],
+      "results": [
+        {
+          "name": "status",
+          "type": "integer",
+          "desc": "通用状态码",
+          "remark": "",
+          "example": 200
+        },
+        {
+          "name": "msg",
+          "type": "string",
+          "desc": "提示信息",
+          "remark": "",
+          "example": "ok"
+        },
+        {
+          "name": "data",
+          "type": "object",
+          "desc": "结果对象",
+          "remark": "",
+          "fields": [
+            {
+              "name": "p_d_num",
+              "type": "integer",
+              "desc": "本页数据条数",
+              "remark": "",
+              "example": 20
+            },
+            {
+              "name": "t_num",
+              "type": "integer",
+              "desc": "总数据条数",
+              "remark": "",
+              "example": 100
+            },
+            {
+              "name": "p_data",
+              "type": "array",
+              "desc": "分页结果数组",
+              "remark": "",
+              "template": [
+                {
+                  "name": "app_id",
+                  "type": "string",
+                  "desc": "应用标识",
+                  "remark": "",
+                  "example": "d42f210dbf5c47b4b936ff15ed5feb61"
+                },
+                {
+                  "name": "app_name",
+                  "type": "string",
+                  "desc": "应用名称",
+                  "remark": "",
+                  "example": "图吧导航"
+                },
+                {
+                  "name": "app_v_id",
+                  "type": "string",
+                  "desc": "应用版本标识",
+                  "remark": "",
+                  "example": "51fb738a47274eab8e9911b42d9eddc6"
+                },
+                {
+                  "name": "description",
+                  "type": "string",
+                  "desc": "应用描述",
+                  "remark": "",
+                  "example": "最好用的车载导航，有网没网都很可靠"
+                },
+                {
+                  "name": "official_flag",
+                  "type": "integer",
+                  "desc": "是否为官方认证",
+                  "remark": "0 非官方, 1 官方",
+                  "example": 1
+                },
+                {
+                  "name": "icon_path",
+                  "type": "string",
+                  "desc": "应用图标地址",
+                  "remark": "",
+                  "example": "http://wdcdn.mapbar.com/appstoreapi/iconUpload/2746b212d48e409c902dc4559f6b61de.png"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "应用详情接口",
+      "path": "/appdetail/{os_version}/{id}",
+      "method": ["GET"],
+      "params": [
+        {
+          "name": "os_version",
+          "type": "string",
+          "required": true,
+          "desc": "手机系统版本对应的api level",
+          "remark": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "desc": "应用标识",
+          "remark": ""
+        }
+      ],
+      "results": [
+        {
+          "name": "status",
+          "type": "integer",
+          "desc": "通用状态码",
+          "remark": "",
+          "example": 200
+        },
+        {
+          "name": "msg",
+          "type": "string",
+          "desc": "提示信息",
+          "remark": "",
+          "example": "ok"
+        },
+        {
+          "name": "data",
+          "type": "object",
+          "desc": "结果数据对象",
+          "remark": "",
+          "fields": [
+            {
+              "name": "app_id",
+              "type": "string",
+              "desc": "应用版本标识",
+              "example": "51fb738a47274eab8e9911b42d9eddc6"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "desc": "应用名称",
+              "example": "图吧导航"
+            },
+            {
+              "name": "developer",
+              "type": "string",
+              "desc": "开发者名称",
+              "example": "图吧"
+            },
+            {
+              "name": "official_flag",
+              "type": "integer",
+              "desc": "是否为官方认证",
+              "example": 1
+            },
+            {
+              "name": "update_time",
+              "type": "string",
+              "desc": "应用最后更新时间",
+              "example": "2016-03-31 00:00:00"
+            },
+            {
+              "name": "comments_count",
+              "type": "integer",
+              "desc": "应用总评论数量",
+              "example": 105
+            },
+            {
+              "name": "download_count",
+              "type": "integer",
+              "desc": "应用总下载量",
+              "example": 100
+            },
+            {
+              "name": "score_avg",
+              "type": "float",
+              "desc": "应用评分平均值",
+              "example": 4.8
+            },
+            {
+              "name": "md5",
+              "type": "string",
+              "desc": "应用文件MD5值",
+              "example": "51fb738a47274eab8e9911b42d9eddc6"
+            },
+            {
+              "name": "size",
+              "type": "float",
+              "desc": "应用大小",
+              "remark": "单位 MB",
+              "example": 24.7664
+            },
+            {
+              "name": "version_no",
+              "type": "integer",
+              "desc": "应用版本号",
+              "example": 2198708
+            },
+            {
+              "name": "version_name",
+              "type": "string",
+              "desc": "应用版本名称",
+              "example": "2.198708"
+            },
+            {
+              "name": "package_name",
+              "type": "string",
+              "desc": "应用包名称",
+              "example": "com.mapbar.android.carnavi"
+            },
+            {
+              "name": "apk_path",
+              "type": "string",
+              "desc": "应用下载地址",
+              "example": "http://wdcdn.mapbar.com/appstoreapi/apk/6deccfcf18fc407ba5d1c57a05eccc4e.apk"
+            },
+            {
+              "name": "icon_path",
+              "type": "string",
+              "desc": "应用图标路径",
+              "example": "http://wdcdn.mapbar.com/appstoreapi/iconUpload/2746b212d48e409c902dc4559f6b61de.png"
+            },
+            {
+              "name": "image_path",
+              "type": "string[]",
+              "desc": "应用介绍图片路径",
+              "example": [
+                "http://wdcdn.mapbar.com/appstoreapi/images/90e9a3deaa1442e4879131fbeaabd749.jpg",
+                "http://wdcdn.mapbar.com/appstoreapi/images/2e11acac9a5c4dc390c98f79721f0bc8.png",
+                "http://wdcdn.mapbar.com/appstoreapi/images/0d8c122057894e5ab81dac7b9595ea8b.png"
+              ]
+            },
+            {
+              "name": "language_type",
+              "type": "integer",
+              "desc": "语言类型",
+              "remark": "0：中文， 1：英文",
+              "example": 0
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "desc": "应用描述",
+              "example": "最好用的车载导航，有网没网都很可靠"
+            },
+            {
+              "name": "brief_desc",
+              "type": "string",
+              "desc": "应用介绍",
+              "example": "混合导航产品，离线在线同时支持，无缝衔接。↵三种模式↵[离线导航]预装数据后可100%离线使用，不费流量。↵[在线导航]在线获取最新POI、路况、电子眼，不占内存。↵[混合导航]基础数据离线，实时数据在线，灵活可靠。↵功能特点↵[全程语音控制]语音识别搜索、解放双手、保证安全。↵[前车/车道识别]图像模糊识别跟导航实景完美结合。↵[快速数据升级]独有24小时更新机制，地图永远新鲜。↵[仙人指路]实景导航，在车道上叠加箭头，直观、安全。"
+            },
+            {
+              "name": "update_desc",
+              "type": "string",
+              "desc": "应用更新描述",
+              "example": "bug修改，稳定性提高"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "应用评论列表接口",
+      "path": "/getcomments/{app_id}/{p_index}/{p_p_num}",
+      "method": ["GET"],
+      "params": [
+        {
+          "name": "app_id",
+          "type": "string",
+          "required": true,
+          "desc": "应用标识",
+          "remark": ""
+        },
+        {
+          "name": "app_v_id",
+          "type": "string",
+          "required": false,
+          "desc": "应用版本标识",
+          "remark": ""
+        },
+        {
+          "name": "page_index",
+          "type": "integer",
+          "required": true,
+          "default": 1,
+          "desc": "当前页码",
+          "remark": "页码从1开始"
+        },
+        {
+          "name": "page_per_num",
+          "type": "integer",
+          "required": true,
+          "default": 10,
+          "desc": "每页记录数",
+          "remark": "第一页只返回3条"
+        }
+      ],
+      "results": [
+        {
+          "name": "status",
+          "type": "integer",
+          "desc": "通用状态码",
+          "remark": "",
+          "example": 200
+        },
+        {
+          "name": "msg",
+          "type": "string",
+          "desc": "提示信息",
+          "remark": "",
+          "example": "ok"
+        },
+        {
+          "name": "data",
+          "type": "object",
+          "desc": "结果对象",
+          "remark": "",
+          "fields": [
+            {
+              "name": "p_d_num",
+              "type": "integer",
+              "desc": "当前页数据量",
+              "remark": "",
+              "example": 3
+            },
+            {
+              "name": "app_id",
+              "type": "string",
+              "desc": "应用标识",
+              "remark": "",
+              "example": "d42f210dbf5c47b4b936ff15ed5feb61"
+            },
+            {
+              "name": "app_version_id",
+              "type": "string",
+              "desc": "应用版本标识",
+              "remark": "",
+              "example": "d42f210dbf5c47b4b936ff15ed5feb61"
+            },
+            {
+              "name": "t_num",
+              "type": "integer",
+              "desc": "总数据量",
+              "remark": "",
+              "example": 100
+            },
+            {
+              "name": "p_data",
+              "type": "array",
+              "desc": "分页评论数组",
+              "remark": "",
+              "template": [
+                {
+                  "name": "id",
+                  "type": "string",
+                  "desc": "评论标识",
+                  "remark": "",
+                  "example": "d42f210dbf5c47b4b936ff15ed5feb61"
+                },
+                {
+                  "name": "comment_con",
+                  "type": "string",
+                  "desc": "评论内容",
+                  "remark": "",
+                  "example": "真好用"
+                },
+                {
+                  "name": "comment_score",
+                  "type": "integer",
+                  "desc": "应用评分",
+                  "remark": "",
+                  "example": 4.5
+                },
+                {
+                  "name": "user_id",
+                  "type": "string",
+                  "desc": "评论用户标识",
+                  "remark": "",
+                  "example": "d42f210dbf5c47b4b936ff15ed5feb61"
+                },
+                {
+                  "name": "user_name",
+                  "type": "string",
+                  "desc": "评论用户名称",
+                  "remark": "",
+                  "example": "zhangsq"
+                },
+                {
+                  "name": "comment_time",
+                  "type": "string",
+                  "desc": "评论时间",
+                  "remark": "",
+                  "example": "2016-03-31 00:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
