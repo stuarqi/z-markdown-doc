@@ -2,9 +2,14 @@
 
 const generator = require('../');
 const fs = require('fs');
+const path = require('path');
 
-let file = fs.createWriteStream('./test/doc.md');
-for (let val of generator(require('./data/device_list.json'), true)) {
-    file.write(val);
-}
-file.end();
+fs.readdir(path.resolve(__dirname, 'data'), function (err, files) {
+    files.forEach(file => {
+        let writer = fs.createWriteStream(path.resolve(__dirname, path.basename(file, '.json') + '.md'));
+        for (let val of generator(require(path.resolve(__dirname, 'data', file)), true)) {
+            writer.write(val);
+        }
+        writer.end();
+    });
+});
